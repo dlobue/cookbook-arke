@@ -1,0 +1,49 @@
+[agent]
+uid =
+gid =
+pidfile = /var/run/arke.pid
+logfile = /var/log/arke.log
+loglevel = info
+
+[core]
+spool_dir = /var/spool/arke
+persist_backend = <%=node.arke.backend%>
+plugin_dirs = <%=node.arke.plugin_dir%>
+hostname = <%=node.fqdn%>
+debug = False
+
+[backend:<%=node.arke.backend%>]
+host = <%=node.arke.backend_host%>
+port = <%=node.arke.backend_port%>
+
+[plugin:system]
+enabled = True
+
+[plugin:latency]
+enabled = False
+<% if node.persist.attribute?('ec2_region') and node.arke.region_limit %>
+region = <%=node.persist.ec2_region%>
+<% end %>
+
+[plugin:ssh_hello]
+enabled = True
+interval = 30
+<% if node.persist.attribute?('ec2_region') and node.arke.region_limit %>
+region = <%=node.persist.ec2_region%>
+<% end %>
+
+<% if node.arke.has_mongodb %>
+[plugin:mongodb]
+enabled = True
+host = <%=node.arke.mongodb_host%>
+port = <%=node.arke.mongodb_port%>
+<% end %>
+
+<% if node.arke.has_postgres_repl %>
+[plugin:postgres_repl]
+enabled = True
+hosts = <%=node.arke.pg_repl_hosts%>
+port = <%=node.arke.pg_repl_port%>
+user = <%=node.arke.pg_repl_user%>
+<% end %>
+
