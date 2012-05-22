@@ -13,7 +13,7 @@ default.arke.region_limit = true
 default.arke.has_mongodb = false
 
 default.arke.mongodb_host = 'localhost'
-default.arke.mongodb_port = Promise.new { mongodb.port }
+default.arke.mongodb_port = Promise.new { attribute?("mongodb") and mongodb.attribute?("port") ? mongodb.port : nil }
 
 default.arke.has_postgres_repl = false
 default.arke.pg_repl_hosts = 'localhost'
