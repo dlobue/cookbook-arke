@@ -1,4 +1,5 @@
 
+default.arke.service_action = :start
 default.arke.plugin_dir = '/etc/arke/plugins'
 default.arke.config_file = '/etc/arke/arke.conf'
 

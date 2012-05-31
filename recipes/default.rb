@@ -19,7 +19,7 @@ end
 service "arke" do
     provider Chef::Provider::Service::Upstart
     supports [:status, :restart, :reload]
-    action :start
+    action node.arke.service_action
 end
 
 
