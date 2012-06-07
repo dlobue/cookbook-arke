@@ -8,6 +8,10 @@ default.arke.backend_host = 'localhost'
 default.arke.backend_port = Promise.new {
     (attribute?("clio") and clio.attribute?("port")) ? clio.port : 64000
 }
+default.arke.backend_timeout = 120
+
+default.arke.gather_workers = 1000
+default.arke.persist_workers = 10
 
 default.arke.region_limit = true
 

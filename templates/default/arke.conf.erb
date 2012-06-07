@@ -11,10 +11,15 @@ persist_backend = <%=node.arke.backend%>
 plugin_dirs = <%=node.arke.plugin_dir%>
 hostname = <%=node.fqdn%>
 debug = False
+logfile = /var/log/arke.log
+loglevel = info
+gather_workers = <%=node.arke.gather_workers%>
+persist_workers = <%=node.arke.persist_workers%>
 
 [backend:<%=node.arke.backend%>]
 host = <%=node.arke.backend_host%>
 port = <%=node.arke.backend_port%>
+timeout = <%=node.arke.backend_timeout%>
 
 [plugin:system]
 enabled = True
